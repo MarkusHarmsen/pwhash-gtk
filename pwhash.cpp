@@ -9,7 +9,7 @@
 #define HASH_LENGTH             40
 #define HASH_MAX_RESULT_LENGTH  26
 
-Gtk::Dialog     *pDialog    = 0;
+Gtk::Window     *pWindow    = 0;
 Gtk::Entry      *pTag       = 0;
 Gtk::Entry      *pPassword  = 0;
 Gtk::SpinButton *pLength    = 0;
@@ -74,7 +74,7 @@ static char *generate_hash(const char *data, const char *key, unsigned int lengt
 }
 
 static void on_password_activated() {
-  if(pDialog && pTag && pLength && pPassword) {
+  if(pWindow && pTag && pLength && pPassword) {
 
     char *code = generate_hash(
       pTag->get_text().c_str(),       // data
@@ -91,7 +91,7 @@ static void on_password_activated() {
 
     free(code);
 
-    pDialog->hide(); //hide() will cause main::run() to end.
+    pWindow->hide(); //hide() will cause main::run() to end.
   }
 }
 
@@ -114,8 +114,8 @@ int main (int argc, char **argv) {
   }
 
   //Get the GtkBuilder-instantiated Dialog:
-  refBuilder->get_widget("window", pDialog);
-  if(pDialog) {
+  refBuilder->get_widget("window", pWindow);
+  if(pWindow) {
     refBuilder->get_widget("entry_tag", pTag);
     refBuilder->get_widget("spin_length", pLength);
 
@@ -124,10 +124,10 @@ int main (int argc, char **argv) {
       pPassword->signal_activate().connect(sigc::ptr_fun(on_password_activated));
     }
 
-    app->run(*pDialog);
+    app->run(*pWindow);
   }
 
-  delete pDialog;
+  delete pWindow;
   delete pTag;
   delete pPassword;
 
