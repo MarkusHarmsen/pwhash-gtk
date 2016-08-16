@@ -7,8 +7,7 @@ to generate a strong uniq password for any service based on a given (master) pas
 You simply enter the current service tag as well as your (master) password to generate a strong hash
 which is copied to clipboard and can now be used as login password.
 
-There also exists an [android version](https://github.com/MarkusHarmsen/pwhash-android) of pwhash.
-
+There also exists an [android](https://github.com/MarkusHarmsen/pwhash-android),  [HTML](https://github.com/MarkusHarmsen/pwhash-html) and [Bash](https://github.com/MarkusHarmsen/pwhash-bash) version of pwhash.
 
 Example
 ------------
